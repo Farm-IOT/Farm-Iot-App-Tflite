@@ -1,0 +1,2 @@
+0 Plant Disease
+1 Plant Healthy
