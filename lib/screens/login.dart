@@ -8,29 +8,45 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final emailController = TextEditingController();
+  final pwdController = TextEditingController();
+
+  @override
+  void dispose(){
+    emailController.dispose();
+    pwdController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     double width=MediaQuery.of(context).size.width;
     double height=MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text("Login Page - Farm IOT",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)
+        ),
+      ),
       body: Container(
         height: height,
         width: width,
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text('Login',style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.bold),),
-                  ],
+                child: CircleAvatar(
+                  radius: 20.0,
+                  backgroundColor: Colors.brown.shade800,
+                  child: Text("A"),
                 ),
               ),
               SizedBox(height: 30.0,),
               TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                   hintText: 'Email',
                   suffixIcon: Icon(Icons.email),
@@ -41,6 +57,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 20.0,),
               TextField(
+                controller: pwdController,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Password',
@@ -56,12 +73,14 @@ class _LoginPageState extends State<LoginPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Forget password?',style: TextStyle(fontSize: 12.0),),
+                    Text('Forgot password?',style: TextStyle(fontSize: 12.0),),
                     RaisedButton(
                       child: Text('Login'),
                       color: Colors.green,
                       onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>ImageAnalyse()));
+                        if(emailController.text == "admin" && pwdController.text == "admin"){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ImageAnalyse()));
+                        }
                       },
                     ),
                   ],
@@ -74,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 child: Text.rich(
                   TextSpan(
-                      text: 'Don\'t have an account',
+                      text: 'Don\'t have an account? ',
                       children: [
                         TextSpan(
                           text: 'Signup',
