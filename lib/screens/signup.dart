@@ -64,7 +64,7 @@ class _SignupPageState extends State<SignupPage> {
                     Text('Forget password?',style: TextStyle(fontSize: 12.0),),
                     RaisedButton(
                       child: Text('Signup'),
-                      color: Color(0xffEE7B23),
+                      color: Colors.green,
                       onPressed: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>ImageAnalyse()));
                       },
@@ -84,7 +84,7 @@ class _SignupPageState extends State<SignupPage> {
                         TextSpan(
                           text: 'Signin',
                           style: TextStyle(
-                              color: Color(0xffEE7B23)
+                              color: Colors.green
                           ),
                         ),
                       ]
