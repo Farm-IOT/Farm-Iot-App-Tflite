@@ -1,2 +1,7 @@
-0 Plant Disease
-1 Plant Healthy
+0 Cercosphora Leaf Spot
+1 Charcoal Rot
+2 Fusariam Wilt
+3 Halo Blight
+4 Powdery Mildew
+5 Tan Spot
+6 Yellow Mosaic
