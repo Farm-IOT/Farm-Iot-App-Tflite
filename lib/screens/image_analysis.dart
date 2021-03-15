@@ -64,15 +64,47 @@ class _ImageAnalyseState extends State<ImageAnalyse> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: pickImage,
-        child: Icon(Icons.image),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FlatButton(
+              height: 32.0,
+              minWidth: 8.0,
+              color: Colors.blue,
+              onPressed: pickImageFromGallery,
+              child: Icon(Icons.image),
+            ),
+            SizedBox(
+              width: 16.0,
+            ),
+            FlatButton(
+              height: 32.0,
+              minWidth: 8.0,
+              color: Colors.blue,
+              onPressed: pickImageFromCamera,
+              child: Icon(Icons.camera),
+            ),
+          ],
+        ),
       ),
+
     );
   }
 
-  pickImage() async {
+  pickImageFromGallery() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    if (image == null) return null;
+    setState(() {
+      _loading = true;
+      _image = image;
+    });
+    classifyImage(image);
+  }
+
+  pickImageFromCamera() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
     if (image == null) return null;
     setState(() {
       _loading = true;
